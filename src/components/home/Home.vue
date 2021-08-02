@@ -11,6 +11,13 @@
       <li class="lista-fotos-item" v-for="foto of fotosComFiltro">
         <painel :titulo="foto.titulo">
           <imagem-responsiva :url="foto.url" :titulo="foto.titulo" />
+          <botao
+            tipo="button"
+            rotulo="remover" 
+            :confirmacao="true" 
+            @botaoAtivado="remove(foto)"
+            estilo="perigo"
+          />
         </painel>
       </li>
     </ul>
@@ -20,10 +27,13 @@
 <script>
 import Painel from "../shared/painel/Painel.vue";
 import ImagemResponsiva from "../shared/imagem-responsiva/ImagemResponsiva.vue";
+import Botao from "../shared/botao/Botao.vue";
+
 export default {
   components: {
     Painel,
     ImagemResponsiva,
+    Botao
   },
 
   data() {
@@ -51,6 +61,13 @@ export default {
     },
   },
 
+  methods: {
+    remove(foto) {
+    
+      alert('Remover' + foto.titulo);
+
+    }
+  },
   created() {
     // buscando os dados na api
     let promisse = this.$http.get("http://localhost:3000/v1/fotos");
