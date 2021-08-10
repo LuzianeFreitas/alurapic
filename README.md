@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+## Project layout
+
+<img src="./src/assets/imagem-app.png">
+
 ## Build Setup
 
 ``` bash
