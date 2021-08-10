@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <h1 class="titulo">{{ titulo }}</h1>
+  <div class="container">
     <input
       type="search"
       class="filtro"
@@ -8,7 +7,7 @@
       placeholder="filtre por parte do título"
     />
     <ul class="lista-fotos">
-      <li class="lista-fotos-item" v-for="foto of fotosComFiltro">
+      <li class="lista-fotos-item" v-for="foto of fotosComFiltro" :key="foto.id">
         <painel :titulo="foto.titulo">
           <imagem-responsiva :url="foto.url" :titulo="foto.titulo" />
           <botao
@@ -38,7 +37,6 @@ export default {
 
   data() {
     return {
-      titulo: "Alurapic",
       fotos: [],
       filtro: "",
     };
@@ -89,7 +87,19 @@ export default {
 
 .filtro {
   display: block;
-  width: 100%;
+  height: 25px;
+  width: 35%;
+
+  border: 1px solid #D96704;
+  border-radius: 5px;
+
+  margin: 0 auto;
+}
+
+.filtro:focus {
+  outline: none;
+  border-color: #D96704;
+  box-shadow: 0 0 2px #D96704;
 }
 
 .lista-fotos {

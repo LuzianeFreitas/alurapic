@@ -26,24 +26,26 @@ export default {
 
 .painel {
   padding: 0 auto;
-  border: solid 2px grey;
+  border: solid 1px #F29F05;
   display: inline-block;
   margin: 5px;
-  box-shadow: 5px 5px 10px grey;
   width: 200px;
   height: 100%;
   vertical-align: top;
   text-align: center;
 
-  box-shadow: 5px 5px 5px #000;
+  border-radius: 5px;
 
   .painel-titulo {
     text-align: center;
-    border: solid 2px;
-    background: lightblue;
+    background: #D96704;
     margin: 0 0 15px 0;
     padding: 10px;
     text-transform: uppercase;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 50px;
   }
 
 
