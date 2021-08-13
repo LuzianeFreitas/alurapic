@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <p v-show="mensagem" class="centralizado">{{mensagem}}</p>
     <input
       type="search"
       class="filtro"
@@ -7,7 +8,7 @@
       placeholder="filtre por parte do título"
     />
     <ul class="lista-fotos">
-      <li class="lista-fotos-item" v-for="foto of fotosComFiltro" :key="foto.id">
+      <li class="lista-fotos-item" v-for="foto of fotosComFiltro" :key="foto._id">
         <painel :titulo="foto.titulo">
           <imagem-responsiva v-meu-transform:scale.animate="1.2" :url="foto.url" :titulo="foto.titulo" />
           <botao
@@ -45,6 +46,7 @@ export default {
     return {
       fotos: [],
       filtro: "",
+      mensagem: ''
     };
   },
 
@@ -67,9 +69,15 @@ export default {
 
   methods: {
     remove(foto) {
-    
-      alert('Remover' + foto.titulo);
-
+      this.$http
+        .delete(`http://localhost:3000/v1/fotos/${foto._id}`)
+        .then(()=> {
+          let indice = this.fotos.indexOf(foto);
+          this.fotos.splice(indice,1);
+          this.mensagem = 'Foto removida com sucesso';
+        }, err => {
+          this.mensagem = 'Não foi possível remover a foto'
+        })
     }
   },
   created() {
