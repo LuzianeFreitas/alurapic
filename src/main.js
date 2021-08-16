@@ -7,6 +7,7 @@ import './directives/Transform';
 
 // registrando o módulo/plugin no global view object
 Vue.use(VueResource);
+Vue.http.options.root = 'http://localhost:3000';
 Vue.use(VueRouter);
 
 const router = new VueRouter({

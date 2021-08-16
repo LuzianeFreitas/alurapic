@@ -31,6 +31,8 @@ import Botao from "../shared/botao/Botao.vue";
 
 import transform  from '../../directives/Transform';
 
+import FotoService from '../domain/foto/FotoService';
+
 export default {
   components: {
     Painel,
@@ -69,26 +71,29 @@ export default {
 
   methods: {
     remove(foto) {
-      this.$http
-        .delete(`http://localhost:3000/v1/fotos/${foto._id}`)
+      this.service
+        .apaga(foto._id)
         .then(()=> {
-          let indice = this.fotos.indexOf(foto);
-          this.fotos.splice(indice,1);
-          this.mensagem = 'Foto removida com sucesso';
-        }, err => {
-          this.mensagem = 'Não foi possível remover a foto'
-        })
+            let indice = this.fotos.indexOf(foto);
+            this.fotos.splice(indice,1);
+            this.mensagem = 'Foto removida com sucesso';
+          }, err => {
+            this.mensagem = 'Não foi possível remover a foto'
+          })
+
     }
   },
   created() {
-    // buscando os dados na api
-    let promisse = this.$http.get("http://localhost:3000/v1/fotos");
-    promisse
-      .then((res) => res.json())
+
+    this.service = new FotoService(this.$resource);
+
+    this.service
+      .lista()
       .then(
         (fotos) => (this.fotos = fotos),
         (err) => console.log(err)
       );
+
   },
 };
 </script>
