@@ -6,7 +6,10 @@ export default class FotoService {
     lista() {
         return this._resource
             .query()
-            .then(res => res.json());
+            .then(res => res.json(), err => {
+                console.log(err);
+                throw new Error('Não foi possível obter as fotos. Tente novamente mais tarde.')
+            });
     }
 
     cadastra(foto) {
@@ -21,7 +24,12 @@ export default class FotoService {
     }
 
     apaga(id) {
-        return this._resource.delete({id: id});
+        return this._resource
+            .delete({id: id})
+            .then(null, err => {
+                console.log(err);
+                throw new Error('Não foi possível remover a foto.')
+            });
     }
 
     busca(id) {
