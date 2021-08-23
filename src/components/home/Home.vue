@@ -11,6 +11,12 @@
       <li class="lista-fotos-item" v-for="foto of fotosComFiltro" :key="foto._id">
         <painel :titulo="foto.titulo">
           <imagem-responsiva v-meu-transform:scale.animate="1.2" :url="foto.url" :titulo="foto.titulo" />
+          <router-link :to="{ name: 'altera', params: { id: foto._id}}">
+            <botao
+              tipo="button"
+              rotulo="alterar" 
+            />
+          </router-link>
           <botao
             tipo="button"
             rotulo="remover" 
