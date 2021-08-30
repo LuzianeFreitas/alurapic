@@ -32,6 +32,7 @@ export default {
         estiloDobotao() {
             if(this.estilo == 'padrao' || !this.estilo) return 'botao-padrao';
             if(this.estilo == 'perigo') return 'botao-perigo';
+            if(this.estilo == 'gravar') return 'botao-gravar';
         }
     }
     
@@ -58,8 +59,13 @@ export default {
         color: white;
     }
 
+    .botao-gravar {
+        background: #35d350;
+        color: white;
+    }
+
     .botao-padrao {
-        background: darkcyan;
+        background: #D96704;
         color: white;
     }
 </style>
