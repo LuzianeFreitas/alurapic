@@ -6,6 +6,8 @@
 
 <img src="./src/assets/imagem-app.png">
 
+<img src="./src/assets/imagem-app1.png">
+
 ## Build Setup
 
 ``` bash
